@@ -55,24 +55,28 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-b from-slate-50/90 to-transparent border-b border-white/20">
           <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/25">
-                <span className="text-white font-bold text-xs">K</span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-xl bg-white shadow-lg shadow-blue-900/5 border border-slate-100 flex flex-col items-center justify-center gap-1 overflow-hidden transition-transform group-hover:scale-105">
+                <div className="w-5 h-1.5 bg-slate-300 rounded-full shadow-sm transform -rotate-12 translate-x-0.5" />
+                <div className="w-5 h-1.5 bg-[#1152d4] rounded-full shadow-sm transform -rotate-12 -translate-x-0.5" />
               </div>
-              <span className="font-semibold text-gray-800 tracking-tight">kolayhesap.co</span>
+              <div className="flex items-baseline gap-[1px] font-sans text-xl tracking-tight">
+                <span className="font-normal text-slate-700 dark:text-slate-200">kolay</span>
+                <span className="font-bold text-slate-900 dark:text-white">hesap</span>
+              </div>
             </Link>
 
             {/* Right Side */}
             <div className="flex items-center gap-2">
               <Link
                 href="#"
-                className="px-4 py-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                className="hidden md:block px-4 py-1.5 text-sm font-medium text-slate-500 hover:text-[#1152d4] transition-colors"
               >
-                Tüm Araçlar
+                Araçlar
               </Link>
               <Link
                 href="#"
-                className="px-4 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                className="px-5 py-2 bg-[#1152d4] text-white text-sm font-bold rounded-lg shadow-lg shadow-blue-600/20 hover:bg-blue-700 hover:shadow-blue-600/30 transition-all transform hover:-translate-y-0.5"
               >
                 Pro ✨
               </Link>
@@ -84,19 +88,23 @@ export default function RootLayout({
         <main>{children}</main>
 
         {/* Footer */}
-        <footer className="bg-gray-50 dark:bg-[#101622] border-t border-gray-100 dark:border-gray-800 transition-colors duration-300">
-          <div className="max-w-5xl mx-auto px-4 py-10">
-            <div className="grid md:grid-cols-4 gap-8">
+        <footer className="bg-white dark:bg-[#101622] border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+          <div className="max-w-5xl mx-auto px-4 py-12">
+            <div className="grid md:grid-cols-4 gap-10">
               {/* Brand */}
-              <div>
-                <Link href="/" className="flex items-center gap-2 mb-3">
-                  <div className="w-7 h-7 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-md flex items-center justify-center">
-                    <span className="text-white font-bold text-xs">K</span>
+              <div className="space-y-4">
+                <Link href="/" className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex flex-col items-center justify-center gap-[3px]">
+                    <div className="w-4 h-1 bg-slate-300 rounded-full transform -rotate-12 translate-x-0.5" />
+                    <div className="w-4 h-1 bg-[#1152d4] rounded-full transform -rotate-12 -translate-x-0.5" />
                   </div>
-                  <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">kolayhesap.co</span>
+                  <div className="flex items-baseline gap-[1px] font-sans text-lg tracking-tight">
+                    <span className="font-normal text-slate-700 dark:text-slate-200">kolay</span>
+                    <span className="font-bold text-slate-900 dark:text-white">hesap</span>
+                  </div>
                 </Link>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                  Hızlı ve güvenilir hesaplama araçları.
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
+                  Modern ve hassas hesaplama araçları paketi. Finansal kararlarınızı güçlendirin.
                 </p>
               </div>
 
