@@ -1,0 +1,44 @@
+{
+    "year": 2026,
+    "description": "2026 yılı Türkiye maaş hesaplama parametreleri",
+    "incomeTaxBrackets": [
+        {
+            "limit": 190000,
+            "rate": 0.15,
+            "label": "0 - 190.000 TL"
+        },
+        {
+            "limit": 400000,
+            "rate": 0.20,
+            "label": "190.000 - 400.000 TL"
+        },
+        {
+            "limit": 1500000,
+            "rate": 0.27,
+            "label": "400.000 - 1.500.000 TL"
+        },
+        {
+            "limit": 5300000,
+            "rate": 0.35,
+            "label": "1.500.000 - 5.300.000 TL"
+        },
+        {
+            "limit": null,
+            "rate": 0.40,
+            "label": "5.300.000 TL üzeri"
+        }
+    ],
+    "stampTaxRate": 0.00759,
+    "sgk": {
+        "employeeRate": 0.14,
+        "unemploymentRate": 0.01,
+        "employerRate": 0.205,
+        "employerUnemploymentRate": 0.02,
+        "ceiling": 297270,
+        "floor": 33030
+    },
+    "minimumWage": {
+        "gross": 33030,
+        "net": 28075.50
+    }
+}
