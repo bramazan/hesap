@@ -84,7 +84,7 @@ export default function RootLayout({
         <main>{children}</main>
 
         {/* Footer */}
-        <footer className="bg-gray-50 border-t border-gray-100 mt-16">
+        <footer className="bg-gray-50 dark:bg-[#101622] border-t border-gray-100 dark:border-gray-800 transition-colors duration-300">
           <div className="max-w-5xl mx-auto px-4 py-10">
             <div className="grid md:grid-cols-4 gap-8">
               {/* Brand */}
@@ -93,42 +93,42 @@ export default function RootLayout({
                   <div className="w-7 h-7 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-md flex items-center justify-center">
                     <span className="text-white font-bold text-xs">H</span>
                   </div>
-                  <span className="font-semibold text-gray-900 text-sm">hesapla.io</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">hesapla.io</span>
                 </Link>
-                <p className="text-xs text-gray-500 leading-relaxed">
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                   Hızlı ve güvenilir hesaplama araçları.
                 </p>
               </div>
 
               {/* Links */}
               <div>
-                <h4 className="font-medium text-gray-900 text-sm mb-3">Hesaplayıcılar</h4>
+                <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Hesaplayıcılar</h4>
                 <ul className="space-y-2 text-xs">
-                  <li><Link href="/finans/kdv-hesaplama" className="text-gray-500 hover:text-gray-900">KDV Hesaplama</Link></li>
-                  <li><Link href="/finans/maas-hesaplama" className="text-gray-500 hover:text-gray-900">Maaş Hesaplama</Link></li>
-                  <li><Link href="/finans/kredi-hesaplama" className="text-gray-500 hover:text-gray-900">Kredi Hesaplama</Link></li>
+                  <li><Link href="/finans/kdv-hesaplama" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">KDV Hesaplama</Link></li>
+                  <li><Link href="/finans/maas-hesaplama" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Maaş Hesaplama</Link></li>
+                  <li><Link href="/finans/kredi-hesaplama" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Kredi Hesaplama</Link></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-medium text-gray-900 text-sm mb-3">Kategoriler</h4>
+                <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Kategoriler</h4>
                 <ul className="space-y-2 text-xs">
-                  <li><Link href="/finans" className="text-gray-500 hover:text-gray-900">Finans</Link></li>
-                  <li><Link href="/genel" className="text-gray-500 hover:text-gray-900">Genel</Link></li>
-                  <li><Link href="/e-ticaret" className="text-gray-500 hover:text-gray-900">E-Ticaret</Link></li>
+                  <li><Link href="/finans" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Finans</Link></li>
+                  <li><Link href="/genel" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Genel</Link></li>
+                  <li><Link href="/e-ticaret" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">E-Ticaret</Link></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-medium text-gray-900 text-sm mb-3">Yasal</h4>
+                <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Yasal</h4>
                 <ul className="space-y-2 text-xs">
-                  <li><Link href="#" className="text-gray-500 hover:text-gray-900">Gizlilik</Link></li>
-                  <li><Link href="#" className="text-gray-500 hover:text-gray-900">Kullanım Şartları</Link></li>
+                  <li><Link href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Gizlilik</Link></li>
+                  <li><Link href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Kullanım Şartları</Link></li>
                 </ul>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-gray-200 text-center text-xs text-gray-400">
+            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 text-center text-xs text-gray-400 dark:text-gray-500">
               © 2026 hesapla.io
             </div>
           </div>

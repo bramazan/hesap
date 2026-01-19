@@ -1,121 +1,128 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { calculators, categories } from "@/lib/data";
-import { PopularCalculators } from "@/components/PopularCalculators";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { Search, ArrowRight } from "lucide-react";
 
 export default function AllCalculatorsPage() {
+    const searchParams = useSearchParams();
     const [selectedCategory, setSelectedCategory] = useState<string>("all");
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const filteredCalculators = selectedCategory === "all"
-        ? calculators
-        : calculators.filter(calc => calc.category === selectedCategory);
+    useEffect(() => {
+        const category = searchParams.get("category");
+        if (category) {
+            setSelectedCategory(category);
+        } else {
+            setSelectedCategory("all");
+        }
+    }, [searchParams]);
+
+    const filteredCalculators = calculators.filter((calc) => {
+        const matchesCategory = selectedCategory === "all" || calc.category === selectedCategory;
+        const matchesSearch = calc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            calc.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            {/* Header */}
-            <section className="bg-white border-b border-gray-100">
-                <div className="max-w-5xl mx-auto px-4 py-12">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center text-sm text-gray-500 hover:text-blue-600 mb-6 transition-colors"
-                    >
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Anasayfaya Dön
-                    </Link>
-
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-2xl">
-                            🧮
-                        </div>
-                        <h1 className="text-3xl font-bold text-gray-900">Tüm Hesaplamalar</h1>
-                    </div>
-
-                    <p className="text-gray-500 max-w-2xl mb-8">
-                        Sitemizde bulunan tüm hesaplama araçlarına buradan ulaşabilirsiniz.
-                        Finans, sağlık, teknoloji ve günlük yaşam için ihtiyacınız olan tüm araçlar.
+        <div className="min-h-screen bg-[#fafafa] dark:bg-[#101622] transition-colors duration-300">
+            <main className="max-w-[1200px] mx-auto px-6 py-12">
+                {/* Page Header */}
+                <section className="text-center mb-12">
+                    <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-[#111318] dark:text-white mb-4">
+                        Tüm Hesaplama Araçları
+                    </h1>
+                    <p className="text-[#616f89] dark:text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Finans, sağlık ve yaşam kalitenizi artıracak hassas hesaplama çözümleri. Aradığınız her şey burada.
                     </p>
+                </section>
 
-                    {/* Category Filter */}
-                    <div className="flex flex-wrap gap-2">
+                {/* Search Bar */}
+                <section className="max-w-2xl mx-auto mb-10">
+                    <div className="relative group">
+                        <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                            <Search className="w-6 h-6 text-[#1152d4]" />
+                        </div>
+                        <input
+                            type="text"
+                            className="w-full h-14 pl-14 pr-6 bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-full text-lg focus:ring-2 focus:ring-[#1152d4]/20 focus:border-[#1152d4] outline-none transition-all shadow-sm group-hover:shadow-md placeholder:text-[#616f89] dark:placeholder:text-gray-500 text-[#111318] dark:text-white"
+                            placeholder="Hesaplama aracı ara..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                </section>
+
+                {/* Category Filtering */}
+                <section className="mb-12">
+                    <div className="flex items-center gap-3 overflow-x-auto pb-4 justify-start md:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
                         <button
                             onClick={() => setSelectedCategory("all")}
-                            className={cn(
-                                "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                                selectedCategory === "all"
-                                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                            )}
+                            className={`flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full px-6 transition-all ${selectedCategory === "all"
+                                ? "bg-white dark:bg-gray-900 text-[#1152d4] border border-[#1152d4] shadow-[0_0_15px_rgba(17,82,212,0.15)]"
+                                : "bg-white dark:bg-gray-900 text-[#111318] dark:text-gray-300 border border-[#f0f2f4] dark:border-gray-800 hover:border-[#1152d4]/50"
+                                }`}
                         >
-                            Tümü
+                            <span className="text-sm font-semibold">Hepsi</span>
                         </button>
                         {categories.map((category) => (
                             <button
                                 key={category.id}
                                 onClick={() => setSelectedCategory(category.id)}
-                                className={cn(
-                                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                                    selectedCategory === category.id
-                                        ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                                )}
+                                className={`flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full px-6 transition-all ${selectedCategory === category.id
+                                    ? "bg-white dark:bg-gray-900 text-[#1152d4] border border-[#1152d4] shadow-[0_0_15px_rgba(17,82,212,0.15)]"
+                                    : "bg-white dark:bg-gray-900 text-[#111318] dark:text-gray-300 border border-[#f0f2f4] dark:border-gray-800 hover:border-[#1152d4]/50"
+                                    }`}
                             >
-                                {category.name}
+                                <span className="text-sm font-medium">{category.name}</span>
                             </button>
                         ))}
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Content */}
-            <section className="max-w-5xl mx-auto px-4 py-8">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {filteredCalculators.map((calc, index) => (
+                {/* Tool Grid */}
+                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {filteredCalculators.map((calc) => (
                         <Link
                             key={calc.slug}
                             href={`/${calc.category}/${calc.slug}`}
-                            className="group relative"
+                            className="group relative bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 p-8 rounded-lg hover:border-[#1152d4]/30 transition-all duration-300 cursor-pointer overflow-hidden block"
                         >
-                            <div className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-200 h-full">
-                                {/* Icon */}
-                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform flex-shrink-0">
+                            <div className="mb-6 flex justify-between items-start">
+                                <div className="w-12 h-12 bg-[#1152d4]/5 rounded-xl flex items-center justify-center text-2xl">
                                     {calc.icon}
                                 </div>
-
-                                {/* Content */}
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                        {calc.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-500 truncate">
-                                        {calc.description}
-                                    </p>
-                                </div>
-
-                                {/* Arrow */}
-                                <svg
-                                    className="w-5 h-5 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all flex-shrink-0"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                <ArrowRight className="w-6 h-6 text-[#1152d4] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300" />
                             </div>
+                            <h3 className="text-xl font-bold mb-2 group-hover:text-[#1152d4] transition-colors text-[#111318] dark:text-white">
+                                {calc.title}
+                            </h3>
+                            <p className="text-sm text-[#616f89] dark:text-gray-400">
+                                {calc.description}
+                            </p>
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-[#1152d4] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         </Link>
                     ))}
-                </div>
+                </section>
 
-                {filteredCalculators.length === 0 && (
+                {/* Empty State */}
+                {filteredCalculators.length === 0 ? (
                     <div className="text-center py-12">
-                        <p className="text-gray-500">Bu kategoride henüz hesaplama aracı bulunmamaktadır.</p>
+                        <p className="text-[#616f89] dark:text-gray-400">Bu kategoride veya aramada henüz hesaplama aracı bulunmamaktadır.</p>
+                    </div>
+                ) : (
+                    /* View All / Pagination (Minimalist) */
+                    <div className="mt-16 text-center">
+                        <button className="bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white font-semibold py-4 px-10 rounded-full hover:bg-[#e5e7eb] dark:hover:bg-gray-700 transition-colors">
+                            Daha Fazla Göster
+                        </button>
                     </div>
                 )}
-            </section>
+            </main>
+            <div className="h-20"></div> {/* Spacer for footer separation */}
         </div>
     );
 }

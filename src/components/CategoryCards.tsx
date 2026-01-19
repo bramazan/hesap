@@ -19,7 +19,7 @@ export function CategoryCards({ categories }: CategoryCardsProps) {
             {categories.map((cat) => (
                 <Link
                     key={cat.id}
-                    href={`/${cat.id}`}
+                    href={`/tum-hesaplamalar?category=${cat.id}`}
                     className="group relative"
                 >
                     {/* 3D Card with perspective */}
