@@ -17,8 +17,8 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Hesaplayıcı - Hızlı ve Kolay Online Hesaplama Araçları",
-    template: "%s | Hesaplayıcı",
+    default: "Kolay Hesap - Hızlı ve Kolay Online Hesaplama Araçları",
+    template: "%s | Kolay Hesap",
   },
   description:
     "Türkiye'nin en hızlı ve güvenilir online hesaplama araçları. KDV, maaş, kredi, yüzde ve daha fazlasını anında hesaplayın.",
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     "maaş hesaplama",
     "yüzde hesaplama",
   ],
-  authors: [{ name: "Hesaplayıcı" }],
-  creator: "Hesaplayıcı",
+  authors: [{ name: "Kolay Hesap" }],
+  creator: "Kolay Hesap",
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    siteName: "Hesaplayıcı",
+    siteName: "Kolay Hesap",
   },
   robots: {
     index: true,
@@ -57,9 +57,9 @@ export default function RootLayout({
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/25">
-                <span className="text-white font-bold text-xs">H</span>
+                <span className="text-white font-bold text-xs">K</span>
               </div>
-              <span className="font-semibold text-gray-800 tracking-tight">hesapla.io</span>
+              <span className="font-semibold text-gray-800 tracking-tight">kolayhesap.co</span>
             </Link>
 
             {/* Right Side */}
@@ -91,9 +91,9 @@ export default function RootLayout({
               <div>
                 <Link href="/" className="flex items-center gap-2 mb-3">
                   <div className="w-7 h-7 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-md flex items-center justify-center">
-                    <span className="text-white font-bold text-xs">H</span>
+                    <span className="text-white font-bold text-xs">K</span>
                   </div>
-                  <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">hesapla.io</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">kolayhesap.co</span>
                 </Link>
                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                   Hızlı ve güvenilir hesaplama araçları.
@@ -129,7 +129,7 @@ export default function RootLayout({
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 text-center text-xs text-gray-400 dark:text-gray-500">
-              © 2026 hesapla.io
+              © 2026 kolayhesap.co
             </div>
           </div>
         </footer>

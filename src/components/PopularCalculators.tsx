@@ -32,7 +32,7 @@ export function PopularCalculators({ calculators }: PopularCalculatorsProps) {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {calculators.map((calc, index) => (
+                {calculators.slice(0, 9).map((calc, index) => (
                     <Link
                         key={calc.slug}
                         href={`/${calc.category}/${calc.slug}`}

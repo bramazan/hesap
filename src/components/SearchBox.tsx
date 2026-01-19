@@ -119,7 +119,7 @@ export function SearchBox({ calculators }: SearchBoxProps) {
                     <input
                         ref={inputRef}
                         type="text"
-                        placeholder="Hesaplayıcı ara..."
+                        placeholder="Hesaplama aracı ara..."
                         value={query}
                         onChange={(e) => {
                             setQuery(e.target.value);

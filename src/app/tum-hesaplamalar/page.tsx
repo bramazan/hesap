@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { calculators, categories } from "@/lib/data";
 import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
 
 export default function AllCalculatorsPage() {
+    return (
+        <Suspense fallback={<div>Yükleniyor...</div>}>
+            <AllCalculatorsContent />
+        </Suspense>
+    );
+}
+
+function AllCalculatorsContent() {
     const searchParams = useSearchParams();
     const [selectedCategory, setSelectedCategory] = useState<string>("all");
     const [searchQuery, setSearchQuery] = useState("");
