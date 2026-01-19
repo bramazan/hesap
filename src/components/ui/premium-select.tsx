@@ -25,7 +25,12 @@ interface PremiumSelectProps {
 
 export function PremiumSelect({ value, onChange, options, placeholder = "Seçiniz", label, className }: PremiumSelectProps) {
     const [open, setOpen] = React.useState(false);
+    const [search, setSearch] = React.useState("");
     const selected = options.find(o => o.value === value);
+
+    const filteredOptions = options.filter(option =>
+        option.label.toLowerCase().includes(search.toLocaleLowerCase('tr-TR'))
+    );
 
     return (
         <div className="space-y-2">
@@ -51,16 +56,27 @@ export function PremiumSelect({ value, onChange, options, placeholder = "Seçini
                     </button>
                 </PopoverPrimitive.Trigger>
                 <PopoverPrimitive.Content align="start" className="z-50 w-[var(--radix-popover-trigger-width)] p-1 rounded-xl border border-gray-100 bg-white shadow-xl shadow-gray-200/50 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2">
+                    <div className="p-2 border-b border-gray-100 sticky top-0 bg-white z-10">
+                        <input
+                            type="text"
+                            placeholder="Ara..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
                     <div className="max-h-[300px] overflow-auto p-1 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
-                        {options.length === 0 ? (
-                            <div className="py-6 text-center text-sm text-gray-500">Seçenek yok</div>
+                        {filteredOptions.length === 0 ? (
+                            <div className="py-6 text-center text-sm text-gray-500">Sonuç bulunamadı</div>
                         ) : (
-                            options.map((option) => (
+                            filteredOptions.map((option) => (
                                 <div
                                     key={option.value}
                                     onClick={() => {
                                         onChange(option.value);
                                         setOpen(false);
+                                        setSearch(""); // Reset search on select
                                     }}
                                     className={cn(
                                         "relative flex cursor-pointer select-none items-center rounded-lg py-2.5 px-3 text-sm font-medium outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",

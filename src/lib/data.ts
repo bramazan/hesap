@@ -17,6 +17,14 @@ export const calculators = [
         categoryLabel: "Finans",
     },
     {
+        slug: "iban-dogrulama",
+        icon: "✅",
+        title: "IBAN Doğrulama",
+        description: "IBAN geçerliliğini ve formatını kontrol edin",
+        category: "finans",
+        categoryLabel: "Finans",
+    },
+    {
         slug: "yuzde-hesaplama",
         icon: "📊",
         title: "Yüzde Hesaplama",
@@ -64,6 +72,14 @@ export const calculators = [
         category: "e-ticaret",
         categoryLabel: "E-Ticaret",
     },
+    {
+        slug: "imsak-hesaplama",
+        icon: "🕌",
+        title: "İftar ve Sahur (İmsak) Vakti",
+        description: "İlinize göre iftar ve sahura ne kadar kaldığını öğrenin",
+        category: "genel",
+        categoryLabel: "Genel",
+    },
 ];
 
 export const categories = [
@@ -81,7 +97,7 @@ export const categories = [
         icon: "🔢",
         description: "Yüzde, yaş ve günlük hesaplamalar",
         color: "from-blue-500 to-indigo-600",
-        count: 5,
+        count: 6,
     },
     {
         id: "e-ticaret",
