@@ -1,6 +1,14 @@
 
 export const calculators = [
     {
+        slug: "pos-komisyon-hesaplama",
+        icon: "💳",
+        title: "POS Komisyon Hesaplama",
+        description: "POS komisyon oranları ve net geçecek tutarı hesaplayın",
+        category: "finans",
+        categoryLabel: "Finans",
+    },
+    {
         slug: "mtv-hesaplama",
         icon: "🚗",
         title: "MTV Hesaplama",
