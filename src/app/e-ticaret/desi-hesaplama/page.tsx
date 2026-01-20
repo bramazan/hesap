@@ -113,7 +113,7 @@ export default function DesiHesaplama() {
                                     Ana Sayfa
                                 </Link>
                                 <span>/</span>
-                                <Link href="/e-ticaret" className="hover:text-blue-600 transition-colors">
+                                <Link href="/tum-hesaplamalar?category=e-ticaret" className="hover:text-blue-600 transition-colors">
                                     E-Ticaret
                                 </Link>
                                 <span>/</span>

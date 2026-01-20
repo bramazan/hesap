@@ -121,7 +121,7 @@ export default function IbanDogrulama() {
                                     Ana Sayfa
                                 </Link>
                                 <span>/</span>
-                                <Link href="/finans" className="hover:text-blue-600 transition-colors">
+                                <Link href="/tum-hesaplamalar?category=finans" className="hover:text-blue-600 transition-colors">
                                     Finans
                                 </Link>
                                 <span>/</span>

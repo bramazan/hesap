@@ -186,7 +186,7 @@ export default function PosCommissionCalculator() {
                             <div className="flex items-center gap-2 text-sm text-gray-500">
                                 <Link href="/" className="hover:text-blue-600 transition-colors">Ana Sayfa</Link>
                                 <span>/</span>
-                                <Link href="/finans" className="hover:text-blue-600 transition-colors">Finans</Link>
+                                <Link href="/tum-hesaplamalar?category=finans" className="hover:text-blue-600 transition-colors">Finans</Link>
                                 <span>/</span>
                                 <span className="text-gray-800">POS Komisyon Hesaplama</span>
                             </div>

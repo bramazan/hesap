@@ -178,7 +178,7 @@ export default function YasHesaplama() {
                                     Ana Sayfa
                                 </Link>
                                 <span>/</span>
-                                <Link href="/genel" className="hover:text-blue-600 transition-colors">
+                                <Link href="/tum-hesaplamalar?category=genel" className="hover:text-blue-600 transition-colors">
                                     Genel
                                 </Link>
                                 <span>/</span>
@@ -250,8 +250,8 @@ export default function YasHesaplama() {
                                                 setOpen(true);
                                             }}
                                             className={`px-4 py-2 rounded-lg border font-medium transition-all ${selectedDate && selectedDate.getFullYear() === year
-                                                    ? "border-blue-500 bg-blue-50 text-blue-600"
-                                                    : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+                                                ? "border-blue-500 bg-blue-50 text-blue-600"
+                                                : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
                                                 }`}
                                         >
                                             {year}

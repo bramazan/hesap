@@ -108,7 +108,7 @@ export default function KdvCalculator() {
                                     Ana Sayfa
                                 </Link>
                                 <span>/</span>
-                                <Link href="/finans" className="hover:text-blue-600 transition-colors">
+                                <Link href="/tum-hesaplamalar?category=finans" className="hover:text-blue-600 transition-colors">
                                     Finans
                                 </Link>
                                 <span>/</span>
@@ -427,10 +427,10 @@ export default function KdvCalculator() {
                                         Yüzde Hesaplama
                                     </Link>
                                     <Link
-                                        href="/finans/kar-marji-hesaplama"
+                                        href="/finans/maas-hesaplama"
                                         className="text-sm px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors"
                                     >
-                                        Kâr Marjı
+                                        Maaş Hesaplama
                                     </Link>
                                     <Link
                                         href="/finans/kredi-hesaplama"

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
+import { CookieConsent } from "@/components/cookie-consent";
+
+const GA_MEASUREMENT_ID = "G-DN2ELN7JQD";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +54,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      {/* Google Analytics */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         {/* Transparent Header - Blends with Hero */}
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-b from-slate-50/90 to-transparent border-b border-white/20">
@@ -121,9 +138,9 @@ export default function RootLayout({
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Kategoriler</h4>
                 <ul className="space-y-2 text-xs">
-                  <li><Link href="/finans" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Finans</Link></li>
-                  <li><Link href="/genel" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Genel</Link></li>
-                  <li><Link href="/e-ticaret" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">E-Ticaret</Link></li>
+                  <li><Link href="/tum-hesaplamalar?category=finans" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Finans</Link></li>
+                  <li><Link href="/tum-hesaplamalar?category=genel" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Genel</Link></li>
+                  <li><Link href="/tum-hesaplamalar?category=e-ticaret" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">E-Ticaret</Link></li>
                 </ul>
               </div>
 
@@ -143,6 +160,9 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+
+        {/* Cookie Consent Banner */}
+        <CookieConsent />
       </body>
     </html>
   );
