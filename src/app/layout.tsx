@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Link from "next/link";
-import Script from "next/script";
+import { Suspense } from "react";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
-
-const GA_MEASUREMENT_ID = "G-DN2ELN7JQD";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,20 +53,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      {/* Google Analytics */}
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}');
-        `}
-      </Script>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+        {/* Analytics Provider - Only tracks after cookie consent */}
+        <Suspense fallback={null}>
+          <AnalyticsProvider>
+            <></>
+          </AnalyticsProvider>
+        </Suspense>
         {/* Transparent Header - Blends with Hero */}
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-b from-slate-50/90 to-transparent border-b border-white/20">
           <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
@@ -85,18 +77,16 @@ export default function RootLayout({
 
             {/* Right Side */}
             <div className="flex items-center gap-2">
-              <Link
-                href="#"
-                className="hidden md:block px-4 py-1.5 text-sm font-medium text-slate-500 hover:text-[#1152d4] transition-colors"
-              >
-                Araçlar
-              </Link>
-              <Link
-                href="#"
-                className="px-5 py-2 bg-[#1152d4] text-white text-sm font-bold rounded-lg shadow-lg shadow-blue-600/20 hover:bg-blue-700 hover:shadow-blue-600/30 transition-all transform hover:-translate-y-0.5"
-              >
-                Pro ✨
-              </Link>
+              <div className="relative">
+                <span
+                  className="px-5 py-2 bg-[#1152d4] text-white text-sm font-bold rounded-lg shadow-lg shadow-blue-600/20 inline-block"
+                >
+                  Pro ✨
+                </span>
+                <span className="absolute -top-2 -right-2 px-1.5 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-bold rounded-full uppercase tracking-wider">
+                  Yakında
+                </span>
+              </div>
             </div>
           </div>
         </header>

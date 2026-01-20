@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { initGA } from "@/lib/analytics";
 
 export function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
@@ -19,13 +20,13 @@ export function CookieConsent() {
     const handleAccept = () => {
         localStorage.setItem("cookie-consent", "accepted");
         setIsVisible(false);
+        // Initialize Google Analytics after consent
+        initGA();
     };
 
     const handleDecline = () => {
         localStorage.setItem("cookie-consent", "declined");
         setIsVisible(false);
-        // Optionally disable analytics here
-        // window['ga-disable-G-DN2ELN7JQD'] = true;
     };
 
     if (!isVisible) return null;

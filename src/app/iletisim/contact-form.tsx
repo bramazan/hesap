@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { PremiumSelect } from "@/components/ui/premium-select";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { initGA, analytics } from "@/lib/analytics";
 
 const SUBJECT_OPTIONS = [
     { value: "general", label: "Genel Sorular" },
@@ -56,8 +57,11 @@ export function ContactForm() {
                 setEmail("");
                 setSubject("");
                 setMessage("");
+                // Track successful form submission
+                analytics.trackFormSubmission("contact_form", true);
             } else {
                 setSubmitStatus("error");
+                analytics.trackFormSubmission("contact_form", false);
             }
         } catch {
             setSubmitStatus("error");
@@ -197,26 +201,6 @@ export function ContactForm() {
                 >
                     destek@kolayhesap.co
                 </Link>
-                <div className="flex gap-8">
-                    <Link
-                        className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-                        href="#"
-                    >
-                        Twitter
-                    </Link>
-                    <Link
-                        className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-                        href="#"
-                    >
-                        Instagram
-                    </Link>
-                    <Link
-                        className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-                        href="#"
-                    >
-                        LinkedIn
-                    </Link>
-                </div>
             </div>
         </section>
     );
