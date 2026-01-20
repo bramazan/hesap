@@ -43,7 +43,7 @@ export function CustomRequestSection() {
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
-                            href="#"
+                            href="/iletisim"
                             className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                         >
                             Bize Ulaşın

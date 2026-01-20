@@ -80,6 +80,14 @@ export const calculators = [
         category: "genel",
         categoryLabel: "Genel",
     },
+    {
+        slug: "mevduat-faizi-hesaplama",
+        icon: "📈",
+        title: "Mevduat Faizi Hesaplama",
+        description: "Vadeli hesap getirisi ve stopaj oranlarını hesaplayın",
+        category: "finans",
+        categoryLabel: "Finans",
+    },
 ];
 
 export const categories = [
