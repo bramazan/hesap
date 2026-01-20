@@ -128,10 +128,12 @@ export default function RootLayout({
               </div>
 
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Yasal</h4>
+                <h4 className="font-medium text-gray-900 dark:text-gray-200 text-sm mb-3">Kurumsal</h4>
                 <ul className="space-y-2 text-xs">
-                  <li><Link href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Gizlilik</Link></li>
-                  <li><Link href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Kullanım Şartları</Link></li>
+                  <li><Link href="/hakkimizda" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Hakkımızda</Link></li>
+                  <li><Link href="/iletisim" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">İletişim</Link></li>
+                  <li><Link href="/gizlilik" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Gizlilik</Link></li>
+                  <li><Link href="/kullanim-sartlari" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Kullanım Şartları</Link></li>
                 </ul>
               </div>
             </div>

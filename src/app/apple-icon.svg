@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <!-- Background -->
+  <rect width="180" height="180" rx="40" fill="white"/>
+  
+  <!-- Border -->
+  <rect x="1" y="1" width="178" height="178" rx="39" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+  
+  <!-- Top line (gray) -->
+  <rect x="45" y="62" width="90" height="22" rx="11" fill="#cbd5e1" transform="rotate(-12 90 73)"/>
+  
+  <!-- Bottom line (blue) -->
+  <rect x="45" y="96" width="90" height="22" rx="11" fill="#1152d4" transform="rotate(-12 90 107)"/>
+</svg>
