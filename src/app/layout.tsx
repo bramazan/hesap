@@ -42,6 +42,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kolayhesap.co"),
   alternates: {
     canonical: "/",
+    languages: {
+      "tr-TR": "https://kolayhesap.co",
+      "x-default": "https://kolayhesap.co",
+    },
   },
   openGraph: {
     type: "website",
