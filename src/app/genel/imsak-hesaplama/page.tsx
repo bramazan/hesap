@@ -284,6 +284,33 @@ export default function ImsakHesaplama() {
                             </svg>
                         </button>
 
+                        {/* How It Works Section */}
+                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">Bu Araç Ne Yapar?</h2>
+                            <div className="space-y-4 text-gray-600">
+                                <p>
+                                    İl bazlı güncel namaz vakitlerini ve Ramazan ayında sahur/iftar geri sayımını gösterir.
+                                </p>
+                                <div className="grid md:grid-cols-3 gap-4">
+                                    <div className="bg-gray-50 rounded-xl p-4 text-center">
+                                        <span className="text-2xl">⏰</span>
+                                        <p className="font-semibold text-gray-800 mt-2">Canlı Sayaç</p>
+                                        <p className="text-xs text-gray-500 mt-1">İftar veya sahura kalan süreyi saniye saniye gösterir</p>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4 text-center">
+                                        <span className="text-2xl">🕌</span>
+                                        <p className="font-semibold text-gray-800 mt-2">6 Vakit</p>
+                                        <p className="text-xs text-gray-500 mt-1">İmsak, güneş, öğle, ikindi, akşam ve yatsı vakitleri</p>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4 text-center">
+                                        <span className="text-2xl">📅</span>
+                                        <p className="font-semibold text-gray-800 mt-2">Aylık İmsakiye</p>
+                                        <p className="text-xs text-gray-500 mt-1">Seçilen il için tüm ay vakitlerini tablo halinde görün</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* FAQ */}
                         <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                             <h2 className="text-xl font-bold text-gray-900 mb-6">Sıkça Sorulan Sorular</h2>

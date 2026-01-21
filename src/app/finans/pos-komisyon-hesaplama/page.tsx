@@ -154,24 +154,24 @@ export default function PosCommissionCalculator() {
 
     const faqItems = [
         {
-            question: "Yuvarlama neden yok?",
-            answer: "İstediğiniz üzere hesaplama 'ham' matematikle yapılır; ek bir yuvarlama kuralı uygulanmaz."
+            question: "POS komisyon oranı nedir?",
+            answer: "POS komisyonu, müşteri kartla ödeme yaptığında bankanın veya ödeme kuruluşunun işlem tutarı üzerinden kestiği hizmet bedelidir. Genellikle %1,5 ile %4 arasında değişir. Bu oran sözleşmenizde veya POS ekstrelerinizde belirtilir."
         },
         {
-            question: "Sonuç çok uzun ondalık çıkarsa ne olacak?",
-            answer: "Hesaplama yine aynı kalır; sadece ekranda gösterim (format) yapılabilir. Bankanız tahsilatta/ekstrede kuruş seviyesinde farklı gösterebilir."
+            question: "Komisyon kesintisi nasıl hesaplanır?",
+            answer: "Komisyon = İşlem Tutarı × (Komisyon Oranı / 100). Örneğin 1.000₺'lik satışta %3 komisyon uygulanırsa: 1.000 × 0,03 = 30₺ komisyon kesilir ve hesabınıza 970₺ geçer."
         },
         {
-            question: "Bankamın yatırdığı net ile neden fark olur?",
-            answer: "Bankalar/PSP'ler kuruş bazında yuvarlama, kalem bazlı kesinti hesaplama veya farklı gösterim uygulayabilir. Bu sayfa bunları birebir taklit etmez, matematiksel net sonucu verir."
+            question: "Sabit ücret ile yüzdelik komisyon farkı ne?",
+            answer: "Yüzdelik komisyon işlem tutarına bağlıdır. Sabit ücret ise işlem başına kesilen sabit tutardır (örn: 0,50₺). Bazı POS anlaşmalarında her iki kesinti birlikte uygulanır."
         },
         {
-            question: "Komisyon oranını nereden bulacağım?",
-            answer: "Sözleşme, POS paneli veya ekstre kesinti kalemlerinden öğrenebilirsiniz."
+            question: "Net→Brüt hesaplaması ne işe yarar?",
+            answer: "Elinize belirli bir net tutar geçmesini istiyorsanız, müşteriden ne kadar çekmeniz gerektiğini hesaplar. Örneğin 970₺ net almak istiyorsanız ve %3 komisyon varsa, 1.000₺ çekmeniz gerekir."
         },
         {
-            question: "Sabit ücret nedir?",
-            answer: "İşlem başı hizmet/işlem bedeli gibi ek ücretlerdir (yoksa 0 girin)."
+            question: "Farklı bankalarda komisyon oranı değişir mi?",
+            answer: "Evet, komisyon oranları banka, ödeme kuruluşu, iş hacmi ve sektöre göre değişir. Genellikle yüksek cirolu işletmeler daha düşük oranlarla anlaşabilir."
         },
     ];
 
@@ -331,6 +331,37 @@ export default function PosCommissionCalculator() {
                                     </div>
                                 </div>
                             )}
+                        </div>
+
+                        {/* How It Works Section */}
+                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">Nasıl Hesaplanır?</h2>
+                            <div className="space-y-4 text-gray-600">
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+                                        <p className="font-semibold text-blue-800 mb-2">Brüt → Net (Ödeme Aldım)</p>
+                                        <div className="text-sm space-y-1">
+                                            <div className="font-mono bg-white p-2 rounded text-xs">
+                                                Komisyon = Tutar × Oran%
+                                            </div>
+                                            <div className="font-mono bg-white p-2 rounded text-xs">
+                                                Net = Tutar - Komisyon - Sabit
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
+                                        <p className="font-semibold text-purple-800 mb-2">Net → Brüt (Hedef Net)</p>
+                                        <div className="text-sm space-y-1">
+                                            <div className="font-mono bg-white p-2 rounded text-xs">
+                                                Brüt = (Net + Sabit) / (1 - Oran%)
+                                            </div>
+                                            <p className="text-xs text-purple-600 mt-2">
+                                                Elinize istediğiniz net tutarın geçmesi için ne kadar çekmeniz gerektiğini hesaplar.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* FAQ Section */}

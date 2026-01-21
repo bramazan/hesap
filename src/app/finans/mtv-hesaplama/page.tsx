@@ -188,6 +188,42 @@ export default function MtvHesaplama() {
 
                         </div>
 
+                        {/* How It Works Section */}
+                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">Nasıl Hesaplanır?</h2>
+                            <div className="space-y-4 text-gray-600">
+                                <p>
+                                    Motorlu Taşıtlar Vergisi (MTV) tutarı aşağıdaki faktörlere göre belirlenir:
+                                </p>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">Araç Tipi</p>
+                                        <div className="text-sm">
+                                            Otomobil, motosiklet, minibüs, panelvan vb. araç türlerine göre farklı tarifeler uygulanır.
+                                        </div>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">Motor Hacmi</p>
+                                        <div className="text-sm">
+                                            Motor silindir hacmi (cc) büyüdükçe vergi tutarı artar. Kademeli dilimler uygulanır.
+                                        </div>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">İlk Tescil Yaşı</p>
+                                        <div className="text-sm">
+                                            Aracın yaşı arttıkça MTV tutarı düşer. 1-3 yaş, 4-6 yaş gibi dilimler bulunur.
+                                        </div>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">Taşıt Değeri (2018+)</p>
+                                        <div className="text-sm">
+                                            2018 ve sonrası tescilli araçlarda kasko değeri de MTV&apos;yi etkiler.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* FAQ */}
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                             <h2 className="text-xl font-bold text-gray-900 mb-6">Sıkça Sorulan Sorular</h2>
@@ -211,7 +247,40 @@ export default function MtvHesaplama() {
                                         </svg>
                                     </summary>
                                     <div className="px-4 pb-4 text-sm text-gray-600">
-                                        01.01.2018 tarihinden sonra tescil edilen otomobillerde MTV tutarı; motor silindir hacmi ve yaşın yanı sıra aracın "taşıt değeri"ne göre de değişmektedir. Daha yüksek değerli araçlar, aynı motor hacminde olsalar bile daha yüksek vergi dilimine girebilirler.
+                                        01.01.2018 tarihinden sonra tescil edilen otomobillerde MTV tutarı; motor silindir hacmi ve yaşın yanı sıra aracın &quot;taşıt değeri&quot;ne göre de değişmektedir. Daha yüksek değerli araçlar, aynı motor hacminde olsalar bile daha yüksek vergi dilimine girebilirler.
+                                    </div>
+                                </details>
+                                <details className="group bg-gray-50 rounded-xl overflow-hidden">
+                                    <summary className="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-100 transition-colors">
+                                        MTV&apos;yi nereden ödeyebilirim?
+                                        <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </summary>
+                                    <div className="px-4 pb-4 text-sm text-gray-600">
+                                        MTV ödemesi GİB (Gelir İdaresi Başkanlığı) internet sitesi, e-Devlet, banka şubeleri veya internet/mobil bankacılık üzerinden yapılabilir. Ayrıca anlaşmalı PTT şubeleri ve vergi dairelerinden de ödeme yapılabilir.
+                                    </div>
+                                </details>
+                                <details className="group bg-gray-50 rounded-xl overflow-hidden">
+                                    <summary className="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-100 transition-colors">
+                                        Yeni alınan araçlarda MTV ne zaman başlar?
+                                        <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </summary>
+                                    <div className="px-4 pb-4 text-sm text-gray-600">
+                                        Yeni alınan araçların MTV&apos;si, aracın tescil edildiği ay itibariyle başlar ve kalan aylar için orantılı olarak hesaplanır. Örneğin Mart ayında tescil edilen bir aracın ilk yıl MTV&apos;si, kalan 10 ay için hesaplanır.
+                                    </div>
+                                </details>
+                                <details className="group bg-gray-50 rounded-xl overflow-hidden">
+                                    <summary className="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-100 transition-colors">
+                                        MTV ödenmezse ne olur?
+                                        <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </summary>
+                                    <div className="px-4 pb-4 text-sm text-gray-600">
+                                        MTV zamanında ödenmediğinde gecikme zammı uygulanır. Ayrıca araç satışı ve devir işlemleri MTV borcu kapatılmadan yapılamaz. Uzun süreli ödenmeme durumunda haciz ve diğer yasal takip işlemleri başlatılabilir.
                                     </div>
                                 </details>
                             </div>

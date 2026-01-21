@@ -199,6 +199,47 @@ export default function IbanDogrulama() {
                             </div>
                         )}
 
+                        {/* How It Works Section */}
+                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">Nasıl Doğrulanır?</h2>
+                            <div className="space-y-4 text-gray-600">
+                                <p>
+                                    IBAN (Uluslararası Banka Hesap Numarası) doğrulaması aşağıdaki adımlardan oluşur:
+                                </p>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">1. Format Kontrolü</p>
+                                        <div className="text-sm">
+                                            TR IBAN tam olarak 26 karakter olmalıdır. İlk 2 karakter ülke kodu (TR), sonraki karakterler sadece rakam içermelidir.
+                                        </div>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-xl p-4">
+                                        <p className="font-semibold text-gray-800 mb-2">2. Checksum Kontrolü</p>
+                                        <div className="text-sm">
+                                            IBAN numarasındaki kontrol basamakları (3. ve 4. karakterler) matematiksel olarak doğrulanır (Mod 97 algoritması).
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+                                    <p className="font-semibold text-blue-800 mb-2">TR IBAN Yapısı</p>
+                                    <div className="font-mono text-sm bg-white p-3 rounded">
+                                        <span className="text-blue-600">TR</span>
+                                        <span className="text-purple-600">00</span>
+                                        <span className="text-green-600">00000</span>
+                                        <span className="text-orange-600">0</span>
+                                        <span className="text-gray-600">0000000000000000</span>
+                                    </div>
+                                    <div className="text-xs mt-2 space-y-1">
+                                        <p><span className="text-blue-600 font-semibold">TR:</span> Ülke Kodu</p>
+                                        <p><span className="text-purple-600 font-semibold">00:</span> Kontrol Basamağı</p>
+                                        <p><span className="text-green-600 font-semibold">00000:</span> Banka Kodu (5 hane)</p>
+                                        <p><span className="text-orange-600 font-semibold">0:</span> Rezerv Alan</p>
+                                        <p><span className="text-gray-600 font-semibold">16 hane:</span> Hesap Numarası</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* FAQ Section */}
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                             <h2 className="text-xl font-bold text-gray-900 mb-6">Sıkça Sorulan Sorular</h2>

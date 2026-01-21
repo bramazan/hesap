@@ -52,8 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+    <html lang="tr" suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`} suppressHydrationWarning>
         {/* Analytics Provider - Only tracks after cookie consent */}
         <Suspense fallback={null}>
           <AnalyticsProvider>
