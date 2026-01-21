@@ -270,7 +270,7 @@ export default function IbanDogrulama() {
                     </div>
 
                     {/* Right Column: Results */}
-                    <div className="lg:col-span-5 lg:sticky lg:top-24 lg:mt-[72px]">
+                    <div className="lg:col-span-5 lg:sticky lg:top-24 lg:mt-8">
                         {/* Result Card */}
                         <div className={`rounded-3xl p-8 shadow-xl border transition-all duration-500 flex flex-col gap-6 ${!result
                             ? "bg-white shadow-gray-200/50 border-gray-100"

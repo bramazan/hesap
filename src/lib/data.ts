@@ -1,6 +1,14 @@
 
 export const calculators = [
     {
+        slug: "butce-planlama",
+        icon: "📊",
+        title: "Bütçe Planlama",
+        description: "Gelirinize uygun akıllı bütçe planı oluşturun",
+        category: "finans",
+        categoryLabel: "Finans",
+    },
+    {
         slug: "pos-komisyon-hesaplama",
         icon: "💳",
         title: "POS Komisyon Hesaplama",
@@ -105,7 +113,7 @@ export const categories = [
         icon: "💰",
         description: "Maaş, kredi, KDV ve vergi hesaplamaları",
         color: "from-emerald-500 to-teal-600",
-        count: 8,
+        count: 9,
     },
     {
         id: "genel",

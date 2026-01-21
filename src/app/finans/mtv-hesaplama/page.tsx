@@ -289,7 +289,7 @@ export default function MtvHesaplama() {
                     </div>
 
                     {/* RIGHT COLUMN: Results */}
-                    <div className="lg:col-span-5 lg:sticky lg:top-24 lg:mt-[72px]">
+                    <div className="lg:col-span-5 lg:sticky lg:top-24 lg:mt-8">
                         <div className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col gap-6 transition-all">
 
                             {/* Header */}
