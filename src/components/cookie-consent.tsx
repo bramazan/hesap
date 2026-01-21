@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { initGA } from "@/lib/analytics";
 
 export function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
@@ -20,10 +19,6 @@ export function CookieConsent() {
     const handleAccept = () => {
         localStorage.setItem("cookie-consent", "accepted");
         setIsVisible(false);
-        // Initialize full Google Analytics after consent
-        initGA();
-        // Dispatch event for same-tab listeners
-        window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: "accepted" }));
     };
 
     const handleDecline = () => {

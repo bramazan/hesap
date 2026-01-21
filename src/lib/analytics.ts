@@ -40,9 +40,8 @@ const loadGtagScript = (): Promise<void> => {
     });
 };
 
-// Initialize Google Analytics in anonymous/cookieless mode (KVKK compliant)
-// This runs even without consent - no personal data is collected
-export const initGAAnonymous = async () => {
+// Initialize Google Analytics - Full tracking mode
+export const initGA = async () => {
     if (typeof window === "undefined" || gaInitialized) return;
 
     await loadGtagScript();
@@ -55,59 +54,14 @@ export const initGAAnonymous = async () => {
     window.gtag = gtag;
     gtag("js", new Date());
 
-    // Configure with KVKK/GDPR compliant settings:
-    // - anonymize_ip: IP addresses are anonymized
-    // - client_storage: none - no cookies are used
-    // - ads_data_redaction: true - minimal data collection
+    // Configure with full tracking
     gtag("config", GA_MEASUREMENT_ID, {
         page_title: document.title,
         page_location: window.location.href,
-        anonymize_ip: true,
-        client_storage: "none",
-        ads_data_redaction: true,
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false,
     });
 
     gaInitialized = true;
-    console.log("[Analytics] Initialized in anonymous/cookieless mode (KVKK compliant)");
-};
-
-// Upgrade to full analytics after user consent
-export const initGA = async () => {
-    if (typeof window === "undefined") return;
-
-    await loadGtagScript();
-
-    // Initialize dataLayer if not already done
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: unknown[]) {
-        window.dataLayer.push(args);
-    }
-    window.gtag = gtag;
-
-    if (!gaInitialized) {
-        gtag("js", new Date());
-    }
-
-    // Reconfigure with full tracking after consent
-    gtag("config", GA_MEASUREMENT_ID, {
-        page_title: document.title,
-        page_location: window.location.href,
-        // Full tracking with cookies enabled
-        client_storage: "granted",
-        anonymize_ip: false,
-        allow_google_signals: true,
-        allow_ad_personalization_signals: false, // Still disable for privacy
-    });
-
-    // Update consent state
-    gtag("consent", "update", {
-        analytics_storage: "granted",
-    });
-
-    gaInitialized = true;
-    console.log("[Analytics] Upgraded to full tracking mode");
+    console.log("[Analytics] Initialized - Full tracking mode");
 };
 
 // Track page views (for SPA navigation)
