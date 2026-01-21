@@ -32,17 +32,53 @@ export const metadata: Metadata = {
     "KDV hesaplama",
     "maaş hesaplama",
     "yüzde hesaplama",
+    "kredi hesaplama",
+    "bütçe planlama",
+    "vergi hesaplama",
   ],
   authors: [{ name: "Kolay Hesap" }],
   creator: "Kolay Hesap",
+  publisher: "Kolay Hesap",
+  metadataBase: new URL("https://kolayhesap.co"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
+    url: "https://kolayhesap.co",
     siteName: "Kolay Hesap",
+    title: "Kolay Hesap - Hızlı ve Kolay Online Hesaplama Araçları",
+    description: "Türkiye'nin en hızlı ve güvenilir online hesaplama araçları. KDV, maaş, kredi, yüzde ve daha fazlasını anında hesaplayın.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kolay Hesap - Online Hesaplama Araçları",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kolay Hesap - Hızlı ve Kolay Online Hesaplama Araçları",
+    description: "Türkiye'nin en hızlı ve güvenilir online hesaplama araçları.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Google Search Console doğrulama kodu buraya eklenecek
+    // google: "your-verification-code",
   },
 };
 

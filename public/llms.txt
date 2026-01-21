@@ -1,0 +1,42 @@
+# Kolay Hesap
+
+> Türkiye'nin en kapsamlı online hesaplama platformu
+
+## Site Bilgileri
+- URL: https://kolayhesap.co
+- Dil: Türkçe (tr-TR)
+- Tür: Ücretsiz online hesaplama araçları
+
+## Ana Özellikler
+Kolay Hesap, finans, genel hesaplamalar ve e-ticaret alanlarında ücretsiz hesaplama araçları sunar.
+
+## Hesaplama Araçları
+
+### Finans
+- KDV Hesaplama: /finans/kdv-hesaplama - KDV dahil/hariç hesaplama
+- Maaş Hesaplama: /finans/maas-hesaplama - Net/brüt maaş dönüşümü
+- Kredi Hesaplama: /finans/kredi-hesaplama - Taksit ve toplam ödeme
+- Bütçe Planlama: /finans/butce-planlama - Gelire uygun bütçe planı
+- Mevduat Faizi: /finans/mevduat-faizi-hesaplama - Vadeli mevduat getirisi
+- MTV Hesaplama: /finans/mtv-hesaplama - Motorlu taşıt vergisi
+- IBAN Doğrulama: /finans/iban-dogrulama - IBAN geçerlilik kontrolü
+- POS Komisyon: /finans/pos-komisyon-hesaplama - POS komisyon hesabı
+
+### Genel
+- Yüzde Hesaplama: /genel/yuzde-hesaplama - Yüzde hesaplama
+- Yaş Hesaplama: /genel/yas-hesaplama - Doğum tarihinden yaş
+- İmsak/İftar Vakti: /genel/imsak-hesaplama - Namaz vakitleri
+- Emeklilik Hesaplama: /genel/emeklilik-hesaplama - EYT dahil emeklilik
+
+### E-Ticaret
+- Desi Hesaplama: /e-ticaret/desi-hesaplama - Kargo desi ölçümü
+
+## İletişim
+- İletişim Sayfası: /iletisim
+- Gizlilik Politikası: /gizlilik
+- Kullanım Şartları: /kullanim-sartlari
+
+## Teknik Bilgiler
+- Framework: Next.js
+- Dil: TypeScript, React
+- Hosting: AWS Amplify

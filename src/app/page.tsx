@@ -4,10 +4,14 @@ import { CategoryCards } from "@/components/CategoryCards";
 import { PopularCalculators } from "@/components/PopularCalculators";
 import { CustomRequestSection } from "@/components/CTASection";
 import { calculators, categories } from "@/lib/data";
+import { WebSiteSchema, OrganizationSchema } from "@/components/seo/SeoSchemas";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* SEO Schemas */}
+      <WebSiteSchema />
+      <OrganizationSchema />
       {/* Hero Section - Compact with Categories */}
       <section className="relative bg-gradient-to-b from-slate-50 via-blue-50/30 to-white">
         {/* Background orbs */}
