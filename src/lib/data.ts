@@ -104,6 +104,14 @@ export const calculators = [
         category: "genel",
         categoryLabel: "Genel",
     },
+    {
+        slug: "kalori-hesaplama",
+        icon: "🔥",
+        title: "Kalori Hesaplama",
+        description: "Günlük kalori ihtiyacınızı ve makro dağılımınızı hesaplayın",
+        category: "saglik",
+        categoryLabel: "Sağlık",
+    },
 ];
 
 export const categories = [
@@ -137,6 +145,6 @@ export const categories = [
         icon: "❤️",
         description: "BMI, kalori ve sağlık metrikleri hesaplamaları",
         color: "from-pink-500 to-rose-600",
-        count: 3,
+        count: 4,
     },
 ];
