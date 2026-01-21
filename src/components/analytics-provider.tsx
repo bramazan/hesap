@@ -2,19 +2,29 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { initGA, trackPageView, hasAnalyticsConsent } from "@/lib/analytics";
+import { initGA, initGAAnonymous, trackPageView, hasAnalyticsConsent } from "@/lib/analytics";
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    // Initialize GA on mount if consent exists
+    // Initialize GA on mount
+    // Always starts in anonymous mode (KVKK compliant)
+    // Upgrades to full mode if consent exists
     useEffect(() => {
-        if (hasAnalyticsConsent()) {
-            initGA();
-        }
+        const initAnalytics = async () => {
+            if (hasAnalyticsConsent()) {
+                // User has already consented - use full tracking
+                await initGA();
+            } else {
+                // No consent yet or declined - use anonymous tracking
+                await initGAAnonymous();
+            }
+        };
 
-        // Listen for consent changes
+        initAnalytics();
+
+        // Listen for consent changes (from CookieConsent component)
         const handleStorageChange = (e: StorageEvent) => {
             if (e.key === "cookie-consent" && e.newValue === "accepted") {
                 initGA();

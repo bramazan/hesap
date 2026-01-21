@@ -20,8 +20,10 @@ export function CookieConsent() {
     const handleAccept = () => {
         localStorage.setItem("cookie-consent", "accepted");
         setIsVisible(false);
-        // Initialize Google Analytics after consent
+        // Initialize full Google Analytics after consent
         initGA();
+        // Dispatch event for same-tab listeners
+        window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: "accepted" }));
     };
 
     const handleDecline = () => {
