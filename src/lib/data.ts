@@ -120,6 +120,14 @@ export const calculators = [
         category: "saglik",
         categoryLabel: "Sağlık",
     },
+    {
+        slug: "dogum-haritasi-hesaplama",
+        icon: "⭐",
+        title: "Doğum Haritası Hesaplama",
+        description: "Güneş burcu, yükselen burç ve natal haritanızı öğrenin",
+        category: "genel",
+        categoryLabel: "Genel",
+    },
 ];
 
 export const categories = [
