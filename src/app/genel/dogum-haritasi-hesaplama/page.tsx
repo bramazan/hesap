@@ -14,6 +14,7 @@ import {
     getPersonalitySummary,
     ZodiacSign,
 } from "@/lib/astrology-data";
+import { PremiumSelect } from "@/components/ui/premium-select";
 
 const faqItems = [
     {
@@ -42,25 +43,28 @@ const faqItems = [
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: currentYear - 1919 }, (_, i) => currentYear - i);
 const days = Array.from({ length: 31 }, (_, i) => i + 1);
-const hours = Array.from({ length: 24 }, (_, i) => i);
-const minutes = Array.from({ length: 60 }, (_, i) => i);
+
+// City options for PremiumSelect
+const cityOptions = TURKEY_CITIES.map(city => ({
+    value: city.name,
+    label: city.name,
+}));
 
 export default function DogumHaritasiHesaplama() {
     const [birthDay, setBirthDay] = useState(15);
     const [birthMonth, setBirthMonth] = useState(3);
     const [birthYear, setBirthYear] = useState(1990);
-    const [birthHour, setBirthHour] = useState(10);
-    const [birthMinute, setBirthMinute] = useState(30);
+    const [birthTime, setBirthTime] = useState("10:30");
     const [selectedCity, setSelectedCity] = useState("İstanbul");
     const [knowsTime, setKnowsTime] = useState(true);
-    const [citySearch, setCitySearch] = useState("");
 
-    const filteredCities = useMemo(() => {
-        if (!citySearch) return TURKEY_CITIES;
-        return TURKEY_CITIES.filter(city =>
-            city.name.toLowerCase().includes(citySearch.toLowerCase())
-        );
-    }, [citySearch]);
+    // Parse birth time
+    const [birthHour, birthMinute] = useMemo(() => {
+        const parts = birthTime.split(":");
+        const h = parseInt(parts[0]) || 0;
+        const m = parseInt(parts[1]) || 0;
+        return [Math.min(23, Math.max(0, h)), Math.min(59, Math.max(0, m))];
+    }, [birthTime]);
 
     const cityData = TURKEY_CITIES.find(c => c.name === selectedCity);
 
@@ -191,29 +195,14 @@ export default function DogumHaritasiHesaplama() {
                                     </label>
                                 </div>
                                 {knowsTime && (
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <select
-                                            value={birthHour}
-                                            onChange={(e) => setBirthHour(parseInt(e.target.value))}
-                                            className="h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 font-medium focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all outline-none"
-                                        >
-                                            {hours.map((h) => (
-                                                <option key={h} value={h}>
-                                                    {String(h).padStart(2, '0')} saat
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <select
-                                            value={birthMinute}
-                                            onChange={(e) => setBirthMinute(parseInt(e.target.value))}
-                                            className="h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 font-medium focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all outline-none"
-                                        >
-                                            {minutes.map((m) => (
-                                                <option key={m} value={m}>
-                                                    {String(m).padStart(2, '0')} dk
-                                                </option>
-                                            ))}
-                                        </select>
+                                    <div>
+                                        <input
+                                            type="time"
+                                            value={birthTime}
+                                            onChange={(e) => setBirthTime(e.target.value)}
+                                            className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 font-medium focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all outline-none text-center text-lg"
+                                        />
+                                        <p className="text-xs text-gray-400 mt-1 text-center">Saat:Dakika formatında girin</p>
                                     </div>
                                 )}
                                 {!knowsTime && (
@@ -224,34 +213,14 @@ export default function DogumHaritasiHesaplama() {
                             </div>
 
                             {/* Birth Place */}
-                            <div className="space-y-4">
-                                <label className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                                    Doğum Yeri
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Şehir ara..."
-                                        value={citySearch}
-                                        onChange={(e) => setCitySearch(e.target.value)}
-                                        className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 font-medium focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all outline-none mb-2"
-                                    />
-                                    <select
-                                        value={selectedCity}
-                                        onChange={(e) => {
-                                            setSelectedCity(e.target.value);
-                                            setCitySearch("");
-                                        }}
-                                        className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 font-medium focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all outline-none"
-                                        size={citySearch ? 5 : 1}
-                                    >
-                                        {filteredCities.map((city) => (
-                                            <option key={city.name} value={city.name}>
-                                                {city.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                            <div className="space-y-2">
+                                <PremiumSelect
+                                    label="Doğum Yeri"
+                                    value={selectedCity}
+                                    onChange={setSelectedCity}
+                                    options={cityOptions}
+                                    placeholder="Şehir seçin..."
+                                />
                                 {cityData && (
                                     <p className="text-xs text-gray-400">
                                         Koordinatlar: {cityData.latitude.toFixed(2)}°N, {cityData.longitude.toFixed(2)}°E
