@@ -17,6 +17,14 @@ export const calculators = [
         categoryLabel: "Finans",
     },
     {
+        slug: "enflasyon-hesaplama",
+        icon: "📈",
+        title: "Enflasyon Hesaplama",
+        description: "TÜİK TÜFE endeksine göre paranızın güncel değerini hesaplayın",
+        category: "finans",
+        categoryLabel: "Finans",
+    },
+    {
         slug: "mtv-hesaplama",
         icon: "🚗",
         title: "MTV Hesaplama",
@@ -121,7 +129,7 @@ export const categories = [
         icon: "💰",
         description: "Maaş, kredi, KDV ve vergi hesaplamaları",
         color: "from-emerald-500 to-teal-600",
-        count: 9,
+        count: 10,
     },
     {
         id: "genel",
