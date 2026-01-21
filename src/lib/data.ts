@@ -88,6 +88,14 @@ export const calculators = [
         category: "finans",
         categoryLabel: "Finans",
     },
+    {
+        slug: "emeklilik-hesaplama",
+        icon: "🏖️",
+        title: "Emeklilik Hesaplama",
+        description: "EYT dahil, ne zaman emekli olacağınızı hesaplayın",
+        category: "genel",
+        categoryLabel: "Genel",
+    },
 ];
 
 export const categories = [
