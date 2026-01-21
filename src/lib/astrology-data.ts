@@ -184,28 +184,42 @@ export function getAscendant(
     birthMinute: number,
     latitude: number
 ): ZodiacSign {
-    // Basitleştirilmiş hesaplama: Güneş burcundan ve saatten tahmin
-    // Her 2 saatte bir burç değişir (24 saat / 12 burç = 2 saat)
-
-    // Güneş doğuş saatini hesapla (basitleştirilmiş, ~6:00 olarak kabul)
-    const sunriseHour = 6;
-
-    // Saati decimal'e çevir
-    const decimalHour = birthHour + birthMinute / 60;
-
-    // Gece yarısından itibaren geçen saat
-    const hoursFromMidnight = decimalHour;
-
-    // Her 2 saatte bir burç değişir
-    // Gece yarısında yükselen burç yaklaşık olarak güneş burcunun karşısındadır
+    // Güneş burcunu al
     const sunSign = getSunSign(birthDate.getMonth() + 1, birthDate.getDate());
-    const sunSignIndex = sunSign.id - 1;
+    const sunSignIndex = sunSign.id - 1; // 0-indexed
 
-    // Saat bazlı ofset hesapla (her 2 saatte 1 burç)
-    const hourOffset = Math.floor(hoursFromMidnight / 2);
+    // Mevsimsel gün doğuşu saati (daha doğru)
+    // Kış: Kasım, Aralık, Ocak, Şubat (month 10, 11, 0, 1)
+    // İlkbahar/Sonbahar: Mart, Nisan, Eylül, Ekim (month 2, 3, 8, 9)
+    // Yaz: Mayıs, Haziran, Temmuz, Ağustos (month 4, 5, 6, 7)
+    const month = birthDate.getMonth();
+    const isWinter = month >= 10 || month <= 1;
+    const isSummer = month >= 4 && month <= 7;
+
+    let baseSunrise: number;
+    if (isWinter) {
+        baseSunrise = 7.5; // ~07:30
+    } else if (isSummer) {
+        baseSunrise = 5.0; // ~05:00
+    } else {
+        baseSunrise = 6.0; // ~06:00 (ilkbahar/sonbahar)
+    }
+
+    // Doğum saatini decimal olarak hesapla
+    const birthTimeDecimal = birthHour + birthMinute / 60;
+
+    // Gün doğuşundan itibaren geçen saat
+    let hoursFromSunrise = birthTimeDecimal - baseSunrise;
+    if (hoursFromSunrise < 0) {
+        hoursFromSunrise += 24; // Gece yarısından önce doğanlar için
+    }
+
+    // Her 2 saatte bir burç değişir (24 saat / 12 burç = 2 saat)
+    // Gün doğuşunda güneş burcu yükselir
+    const signOffset = Math.floor(hoursFromSunrise / 2);
 
     // Yükselen burç = Güneş burcu + saat ofseti (mod 12)
-    const ascendantIndex = (sunSignIndex + hourOffset) % 12;
+    const ascendantIndex = (sunSignIndex + signOffset) % 12;
 
     return ZODIAC_SIGNS[ascendantIndex];
 }
