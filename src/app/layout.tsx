@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
 import { AnalyticsProvider } from "@/components/analytics-provider";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -115,8 +116,8 @@ export default function RootLayout({
               </div>
             </Link>
 
-            {/* Navigation */}
-            <nav className="flex items-center gap-1">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-1">
               <Link
                 href="/tum-hesaplamalar"
                 className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 rounded-lg transition-colors"
@@ -145,6 +146,9 @@ export default function RootLayout({
                 </svg>
               </Link>
             </nav>
+
+            {/* Mobile Menu */}
+            <MobileMenu />
           </div>
         </header>
 

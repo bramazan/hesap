@@ -53,6 +53,7 @@ body {
   max-width: 640px;
   margin: 0 auto;
   padding: 24px 16px;
+  width: 100%;
 }
 
 .page-header {
@@ -65,11 +66,13 @@ body {
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--text-primary);
+  line-height: 1.2;
 }
 
 .page-description {
   font-size: 1rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* Calculator Card */
@@ -175,6 +178,7 @@ body {
 .result-value {
   font-size: 2rem;
   font-weight: 700;
+  word-break: break-word;
 }
 
 .result-detail {
@@ -357,6 +361,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -389,6 +394,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
