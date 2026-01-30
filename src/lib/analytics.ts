@@ -9,17 +9,7 @@ export const GA_MEASUREMENT_ID = "G-DN2ELN7JQD";
 let gaScriptLoaded = false;
 let gaInitialized = false;
 
-// Check if user has consented to full analytics (cookies)
-export const hasAnalyticsConsent = (): boolean => {
-    // Return true by default to ensure tracking works
-    return true;
-};
-
-// Check if user has declined cookies
-export const hasDeclinedConsent = (): boolean => {
-    // Return false by default to ensure tracking works
-    return false;
-};
+// Consent checking removed - all users tracked unconditionally
 
 // Initialize Google Analytics - Full tracking mode
 export const initGA = () => {
@@ -32,35 +22,42 @@ export const initGA = () => {
     }
     window.gtag = gtag;
 
-    // Set default consent to granted
-    gtag("consent", "default", {
+    // Set consent to granted for all users unconditionally
+    gtag("consent", "update", {
         "ad_storage": "granted",
-        "analytics_storage": "granted"
+        "analytics_storage": "granted",
+        "personalization_storage": "granted"
     });
 
     gtag("js", new Date());
 
-    // Configure with full tracking
-    gtag("config", GA_MEASUREMENT_ID, {
-        page_title: document.title,
-        page_location: window.location.href,
-        send_page_view: true 
-    });
-
-    // Load script asynchronously
+    // Load script with callback to configure after loading
     const script = document.createElement("script");
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     script.async = true;
+    script.onload = () => {
+        // Configure AFTER script loads
+        window.gtag("config", GA_MEASUREMENT_ID, {
+            page_title: document.title,
+            page_location: window.location.href,
+            send_page_view: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true
+        });
+        console.log("[Analytics] GA Script loaded and configured successfully");
+    };
+    script.onerror = () => {
+        console.error("[Analytics] Failed to load GA script");
+    };
     document.head.appendChild(script);
 
     gaInitialized = true;
-    console.log("[Analytics] Initialized - Force tracking mode");
+    console.log("[Analytics] Initialization started - waiting for script load");
 };
 
-// Track page views (for SPA navigation)
-// Works in both anonymous and full mode
+// Track page views (for SPA navigation) - unconditional tracking
 export const trackPageView = (url: string, title?: string) => {
-    if (typeof window === "undefined" || typeof window.gtag === "undefined") return;
+    if (typeof window === "undefined" || !window.gtag) return;
 
     window.gtag("config", GA_MEASUREMENT_ID, {
         page_path: url,
@@ -68,15 +65,14 @@ export const trackPageView = (url: string, title?: string) => {
     });
 };
 
-// Track custom events
-// Works in both anonymous and full mode
+// Track custom events - unconditional tracking for all users
 export const trackEvent = (
     action: string,
     category: string,
     label?: string,
     value?: number
 ) => {
-    if (typeof window === "undefined" || typeof window.gtag === "undefined") return;
+    if (typeof window === "undefined" || !window.gtag) return;
 
     window.gtag("event", action, {
         event_category: category,
