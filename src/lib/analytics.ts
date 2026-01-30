@@ -11,57 +11,50 @@ let gaInitialized = false;
 
 // Check if user has consented to full analytics (cookies)
 export const hasAnalyticsConsent = (): boolean => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem("cookie-consent") === "accepted";
+    // Return true by default to ensure tracking works
+    return true;
 };
 
 // Check if user has declined cookies
 export const hasDeclinedConsent = (): boolean => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem("cookie-consent") === "declined";
-};
-
-// Load gtag script if not already loaded
-const loadGtagScript = (): Promise<void> => {
-    return new Promise((resolve) => {
-        if (gaScriptLoaded) {
-            resolve();
-            return;
-        }
-
-        const script = document.createElement("script");
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-        script.async = true;
-        script.onload = () => {
-            gaScriptLoaded = true;
-            resolve();
-        };
-        document.head.appendChild(script);
-    });
+    // Return false by default to ensure tracking works
+    return false;
 };
 
 // Initialize Google Analytics - Full tracking mode
-export const initGA = async () => {
+export const initGA = () => {
     if (typeof window === "undefined" || gaInitialized) return;
 
-    await loadGtagScript();
-
-    // Initialize dataLayer
+    // Initialize dataLayer and gtag function IMMEDIATELY
     window.dataLayer = window.dataLayer || [];
     function gtag(...args: unknown[]) {
         window.dataLayer.push(args);
     }
     window.gtag = gtag;
+
+    // Set default consent to granted
+    gtag("consent", "default", {
+        "ad_storage": "granted",
+        "analytics_storage": "granted"
+    });
+
     gtag("js", new Date());
 
     // Configure with full tracking
     gtag("config", GA_MEASUREMENT_ID, {
         page_title: document.title,
         page_location: window.location.href,
+        send_page_view: true 
     });
 
+    // Load script asynchronously
+    const script = document.createElement("script");
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
+
     gaInitialized = true;
-    console.log("[Analytics] Initialized - Full tracking mode");
+    console.log("[Analytics] Initialized - Force tracking mode");
 };
 
 // Track page views (for SPA navigation)

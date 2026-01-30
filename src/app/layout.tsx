@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="tr" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`} suppressHydrationWarning>
-        {/* Analytics Provider - Only tracks after cookie consent */}
+        {/* Analytics Provider - Unconditional tracking */}
         <Suspense fallback={null}>
           <AnalyticsProvider>
             <></>
